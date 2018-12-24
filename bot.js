@@ -238,7 +238,7 @@ bot.on('message', function m (user, userID, channelID, message, evt){
                         to: channelID,
                         message: '<@!' + userID + '> has joined the queue!'
                             + '\nThere are ' + queue[cur_queue].length/2 + '/' + queue_cap[cur_queue]/2 + ' spots filled.'
-                            + '\nThe queue is currently ' + queue_status[cur_queue]
+                            + '\nqueue: ' + queue_status[cur_queue]
                     });
                 }//if
                 else if(queue_status[cur_queue] == 'closed'){
@@ -320,59 +320,84 @@ bot.on('message', function m (user, userID, channelID, message, evt){
         		case 'queue':
             case 'que':
         		// case 'q':
+                var bmessage = '';
                 if(queue[cur_queue].length == 0){
                     bot.sendMessage({
                         to: channelID,
                         message: 'There are ' + queue[cur_queue].length/2 + '/' + queue_cap[cur_queue]/2
-                        + ' spots filled.' + '\nThe queue is currently ' + queue_status[cur_queue]
+                        + ' spots filled.' + '\nqueue: ' + queue_status[cur_queue]
                     });
                 }
           			for(var i = 0; i < queue[cur_queue].length; i+=2){
-                    if(i == 0){
+                    if(i == 0){    //first userID in queue
                         if(i+2 < queue[cur_queue].length){
-                            bot.sendMessage({
-                                to: channelID,
-                                message: 'Currently singing: <@' + queue[cur_queue][i+1] + '>'
-                            });
+                            // bot.sendMessage({
+                            //     to: channelID,
+                            //     message: 'Currently singing: <@' + queue[cur_queue][i+1] + '>'
+                            // });
+                            bmessage = bmessage.concat('Currently singing: <@' + queue[cur_queue][i+1] + '>');
                         }//if
                         else{
+                            // bot.sendMessage({
+                            //     to: channelID,
+                            //     message: 'Currently singing: <@' + queue[cur_queue][i+1] + '>\nThere are '
+                            //     + queue[cur_queue].length/2 + '/' + queue_cap[cur_queue]/2 + ' spots filled.'
+                            //     + '\nqueue: ' + queue_status[cur_queue]
+                            // });
+                            bmessage = bmessage.concat('Currently singing: <@' + queue[cur_queue][i+1] + '>\nThere are '
+                                    + queue[cur_queue].length/2 + '/' + queue_cap[cur_queue]/2 + ' spots filled.'
+                                    + '\nqueue: ' + queue_status[cur_queue]);
                             bot.sendMessage({
-                                to: channelID,
-                                message: 'Currently singing: <@' + queue[cur_queue][i+1] + '>\nThere are '
-                                + queue[cur_queue].length/2 + '/' + queue_cap[cur_queue]/2 + ' spots filled.'
-                                + '\nThe queue is currently ' + queue_status[cur_queue]
+                            		to: channelID,
+                             		message: bmessage
                             });
                         }
                     }//if
-            				else if(i == 2){
+            				else if(i == 2){    //second userID in queue
                         if(i+2 < queue[cur_queue].length){
-              				      bot.sendMessage({
-                         				 to: channelID,
-                                 message: 'Up next: <@' + queue[cur_queue][i+1] + '>'
-                            });
+              				      // bot.sendMessage({
+                         		// 		 to: channelID,
+                            //      message: 'Up next: <@' + queue[cur_queue][i+1] + '>'
+                            // });
+                            bmessage = bmessage.concat('\nUp next: <@' + queue[cur_queue][i+1] + '>');
                         }
                         else{
-                            bot.sendMessage({
-                                 to: channelID,
-                                 message: 'Up next: <@' + queue[cur_queue][i+1] + '>\nThere are '
+                            // bot.sendMessage({
+                            //      to: channelID,
+                            //      message: 'Up next: <@' + queue[cur_queue][i+1] + '>\nThere are '
+                            //      + queue[cur_queue].length/2 + '/' + queue_cap[cur_queue]/2 + ' spots filled.'
+                            //      + '\nqueue: ' + queue_status[cur_queue]
+                            // });
+                            bmessage = bmessage.concat('\nUp next: <@' + queue[cur_queue][i+1] + '>\nThere are '
                                  + queue[cur_queue].length/2 + '/' + queue_cap[cur_queue]/2 + ' spots filled.'
-                                 + '\nThe queue is currently ' + queue_status[cur_queue]
+                                 + '\nqueue: ' + queue_status[cur_queue]);
+                            bot.sendMessage({
+                            		to: channelID,
+                             		message: bmessage
                             });
                         }
             				}//else if
             				else{
                         if(i+2 < queue[cur_queue].length){
-                				    bot.sendMessage({
-                           			to: channelID,
-                            		message: queue[cur_queue][i]
-                           	});
+                				    // bot.sendMessage({
+                           	// 		to: channelID,
+                            // 		message: queue[cur_queue][i]
+                           	// });
+                            bmessage = bmessage.concat('\n' + queue[cur_queue][i]);
                         }
                         else{
+                            // bot.sendMessage({
+                           	// 		to: channelID,
+                            // 		message: queue[cur_queue][i] + 'There are '
+                            //     + queue[cur_queue].length/2 + '/' + queue_cap[cur_queue]/2 + ' spots filled.'
+                            //     + '\nqueue: ' + queue_status[cur_queue]
+                           	// });
+                            bmessage = bmessage.ooncat('\n' + queue[cur_queue][i] + 'There are '
+                                + queue[cur_queue].length/2 + '/' + queue_cap[cur_queue]/2 + ' spots filled.'
+                                + '\nqueue: ' + queue_status[cur_queue]);
                             bot.sendMessage({
                            			to: channelID,
-                            		message: queue[cur_queue][i] + 'There are '
-                                + queue[cur_queue].length/2 + '/' + queue_cap[cur_queue]/2 + ' spots filled.'
-                                + '\nThe queue is currently ' + queue_status[cur_queue]
+                            		message: bmessage
                            	});
                         }
             				}//else
@@ -451,7 +476,7 @@ bot.on('message', function m (user, userID, channelID, message, evt){
                           value: "Leave the queue."
                       },
                       {
-                          name: "queue (q)",
+                          name: "queue (que)",
                           value: "View who is in queue, how many spots are filled, and if queue is open."
                       },
                       {
