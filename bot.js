@@ -1,4 +1,4 @@
-var Discord = require('discord.io');
+﻿var Discord = require('discord.io');
 var logger = require('winston');
 var auth = require('./auth.json');
 var cur_queue = -1;
@@ -21,6 +21,11 @@ var bot = new Discord.Client({
    token: auth.token,
    autorun: true
 });
+
+var http = require("http");
+setInterval(function() {
+    http.get("http://<your app name>.herokuapp.com");
+}, 2000); // every 5 minutes (300000)
 
 // var keys = Object.keys(Discord.Client._events);
 // console.log(keys);
@@ -68,6 +73,7 @@ bot.on('ready', function (evt) {
     // var keys = Object.keys(evt.d.user);
     // console.log(evt.d.user_settings);
     bot_id = evt.d.user.id;
+    setInterval();
     // console.log(evt.d.user.id);
     // console.log(keys);
     // console.log(bot.servers[channel_ID].roles.);
