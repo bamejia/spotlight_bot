@@ -74,7 +74,7 @@ bot.on('ready', function (evt) {
     // var keys = Object.keys(evt.d.user);
     // console.log(evt.d.user_settings);
     bot_id = evt.d.user.id;
-    setInterval();
+    pinger();
     // console.log(evt.d.user.id);
     // console.log(keys);
     // console.log(bot.servers[channel_ID].roles.);
