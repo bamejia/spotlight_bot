@@ -181,7 +181,7 @@ bot.on('message', function m (user, userID, channelID, message, evt){
                           },
                           {
                               name: "*cap",
-                              value: "Sets the maximum amount of users allowed in queue."
+                              value: "Sets the maximum amount of users allowed in queue. (Negative integers uncap the queue)"
                           },
                           {
                               name: "*clear (clr)",
