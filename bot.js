@@ -155,7 +155,112 @@ bot.on('message', function m (user, userID, channelID, message, evt){
                   message: 'Spotlight Bot has been linked'
               });
               return;
+
+          case 'help':
+          case 'h':
+              // var keys = Object.keys(bot.sendMessage(function));
+              // console.log(keys);
+              // console.log(bot.avatar);
+              //https://cdn.discordapp.com/avatars/526011511093854229/ef5086d73496a69d96fc5aaa820b3722.jpg
+
+              // return;
+              avatarURL = 'https://cdn.discordapp.com/avatars/' + bot_id + '/' + bot.avatar + '.jpg';
+              bot.sendMessage({
+                to: channelID,
+                embed: {
+                  color: 0x02c4ff,
+                  // background: 0xFFFFFF,
+                  //3447003
+                  author: {
+                    name: bot.username + ' - Help',
+                    icon_url: avatarURL,
+                    // color: 0x02c4ff
+                  },
+                  // image : avatarURL,
+                  // thumbnail : avatarURL,
+                  // title: "**__Help Commands__**",
+                  // url: "http://google.com",
+                  // description: "This is a test embed to showcase what they look like and what they can do.",
+                  fields: [{
+                        name: "join (j)",
+                        value: "Join the queue."
+                    },
+                    {
+                        name: "leave (l)",
+                        value: "Leave the queue."
+                    },
+                    {
+                        name: "queue (que)",
+                        value: "View who is in queue, how many spots are filled, and if queue is open."
+                    },
+                    {
+                        name: "next (n)",
+                        value: "Current singer or authorized member removes the current singer from queue after they are done."
+                    },
+                    {
+                        name: "*link (lnk)",
+                        value: "Links the bot to a channel, signaling it to respond to other command."
+                    },
+                    {
+                        name: "*unlink (ulnk)",
+                        value: "Unlink the bot from a channel, signaling it to stop responding to commands other than 'link', and clearing the queue."
+                    },
+                    {
+                        name: "*open (o)",
+                        value: "Opens the queue, allowing users to join it."
+                    },
+                    {
+                        name: "*close (c)",
+                        value: "Closes the queue, preventing users from joining it."
+                    },
+                    {
+                        name: "*cap",
+                        value: "Sets the maximum amount of users allowed in queue."
+                    },
+                    {
+                        name: "*clear (clr)",
+                        value: "Clears the queue, removing anyone in it."
+                    },
+                    {
+                        name: "help (h)",
+                        value: "Displays all commands."
+                    },
+                    {
+                        name: "\u200B",
+                        value: "(*)only authorized users may use",
+                    }
+                    // {
+                    //     name: "(*)only authorized users may use",
+                    //     value: "\u200B"
+                    // }
+                    // {
+                    //   name: "leave(l)",
+                    //   value: "You can put [masked links](http://google.com) inside of rich embeds."
+                    // },
+                    // {
+                    //   name: "Markdown",
+                    //   value: "You can put all the *usual* **__Markdown__** inside of them."
+                    // }
+                  ],
+
+                  blankField: [{
+                      blankField:true
+                  }],
+                  timestamp: new Date(),
+                  footer: {
+                    icon_url: avatarURL,
+                    text: "© bamxmejia"
+                  }
+                }//embed
+            });
+              // bot.sendMessage({
+              //     to: channelID,
+              //     message: 'Public: join(j), leave(l), queue(q), next(n) only current singer\n'
+              //         + 'Authorized Members Only: link(lnk), unlink(ulnk), open(o), close(c), cap, clear(clr), next(n)'
+              // });
+            break;
         }
+
         if(queue_linked[cur_queue][1] == 'unlinked') {
           // bot.sendMessage({
           //     to: channelID,
@@ -447,110 +552,6 @@ bot.on('message', function m (user, userID, channelID, message, evt){
                     to: channelID,
                     message: 'Queue has been cleared.'
                 });
-                break;
-
-            case 'help':
-            case 'h':
-                // var keys = Object.keys(bot.sendMessage(function));
-                // console.log(keys);
-                // console.log(bot.avatar);
-                https://cdn.discordapp.com/avatars/526011511093854229/ef5086d73496a69d96fc5aaa820b3722.jpg
-
-                // return;
-                avatarURL = 'https://cdn.discordapp.com/avatars/' + bot_id + '/' + bot.avatar + '.jpg';
-                bot.sendMessage({
-                  to: channelID,
-                  embed: {
-                    color: 0x02c4ff,
-                    // background: 0xFFFFFF,
-                    //3447003
-                    author: {
-                      name: bot.username + ' - Help',
-                      icon_url: avatarURL,
-                      // color: 0x02c4ff
-                    },
-                    // image : avatarURL,
-                    // thumbnail : avatarURL,
-                    // title: "**__Help Commands__**",
-                    // url: "http://google.com",
-                    // description: "This is a test embed to showcase what they look like and what they can do.",
-                    fields: [{
-                          name: "join (j)",
-                          value: "Join the queue."
-                      },
-                      {
-                          name: "leave (l)",
-                          value: "Leave the queue."
-                      },
-                      {
-                          name: "queue (que)",
-                          value: "View who is in queue, how many spots are filled, and if queue is open."
-                      },
-                      {
-                          name: "next (n)",
-                          value: "Current singer or authorized member removes the current singer from queue after they are done."
-                      },
-                      {
-                          name: "*link (lnk)",
-                          value: "Links the bot to a channel, signaling it to respond to other command."
-                      },
-                      {
-                          name: "*unlink (ulnk)",
-                          value: "Unlink the bot from a channel, signaling it to stop responding to commands other than 'link', and clearing the queue."
-                      },
-                      {
-                          name: "*open (o)",
-                          value: "Opens the queue, allowing users to join it."
-                      },
-                      {
-                          name: "*close (c)",
-                          value: "Closes the queue, preventing users from joining it."
-                      },
-                      {
-                          name: "*cap",
-                          value: "Sets the maximum amount of users allowed in queue."
-                      },
-                      {
-                          name: "*clear (clr)",
-                          value: "Clears the queue, removing anyone in it."
-                      },
-                      {
-                          name: "help (h)",
-                          value: "Displays all commands."
-                      },
-                      {
-                          name: "\u200B",
-                          value: "(*)only authorized users may use",
-                      }
-                      // {
-                      //     name: "(*)only authorized users may use",
-                      //     value: "\u200B"
-                      // }
-                      // {
-                      //   name: "leave(l)",
-                      //   value: "You can put [masked links](http://google.com) inside of rich embeds."
-                      // },
-                      // {
-                      //   name: "Markdown",
-                      //   value: "You can put all the *usual* **__Markdown__** inside of them."
-                      // }
-                    ],
-
-                    blankField: [{
-                        blankField:true
-                    }],
-                    timestamp: new Date(),
-                    footer: {
-                      icon_url: avatarURL,
-                      text: "© bamxmejia"
-                    }
-                  }//embed
-              });
-                // bot.sendMessage({
-                //     to: channelID,
-                //     message: 'Public: join(j), leave(l), queue(q), next(n) only current singer\n'
-                //         + 'Authorized Members Only: link(lnk), unlink(ulnk), open(o), close(c), cap, clear(clr), next(n)'
-                // });
                 break;
 
             //when an incorrect command is entered
