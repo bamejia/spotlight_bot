@@ -23,10 +23,11 @@ var bot = new Discord.Client({
 });
 
 var http = require("http");
+function pinger (){
 setInterval(function() {
     http.get("http://<your app name>.herokuapp.com");
 }, 2000); // every 5 minutes (300000)
-
+}
 // var keys = Object.keys(Discord.Client._events);
 // console.log(keys);
 
