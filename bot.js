@@ -76,11 +76,11 @@ function sleep(ms) {
 
 //whenever a message is sent by anyone in a joined server, this function is called
 bot.on('message', function m (user, userID, channelID, message, evt){
-    // sleep(500);
-    // var keys = Object.keys(evt.d);
-    // console.log(evt.d.member.roles);
-    // console.log(evt.d.guild_id);
-    // return;
+        // sleep(500);
+        // var keys = Object.keys(evt.d);
+        // console.log(evt.d.member.roles);
+        // console.log(evt.d.guild_id);
+        // return;
     for(var i = 0; i < queue_linked.length; i++){
       if(queue_linked[i][0] == channelID){
         cur_queue = i;
@@ -117,6 +117,13 @@ bot.on('message', function m (user, userID, channelID, message, evt){
                     bot.sendMessage({
                         to: channelID,
                         message: 'Only authorized members can call this function!' + '\n'
+                    });//bot.sendMessage
+                    return;
+                }//if
+                if(queue_linked[cur_queue][1] == 'linked'){
+                    bot.sendMessage({
+                        to: channelID,
+                        message: 'Already linked to this channel!' + '\n'
                     });//bot.sendMessage
                     return;
                 }//if
@@ -195,14 +202,14 @@ bot.on('message', function m (user, userID, channelID, message, evt){
                               name: "\u200B",
                               value: "(*)only authorized users may use",
                           }
-                          // {
-                          //   name: "leave(l)",
-                          //   value: "You can put [masked links](http://google.com) inside of rich embeds."
-                          // },
-                          // {
-                          //   name: "Markdown",
-                          //   value: "You can put all the *usual* **__Markdown__** inside of them."
-                          // }
+                              // {
+                              //   name: "leave(l)",
+                              //   value: "You can put [masked links](http://google.com) inside of rich embeds."
+                              // },
+                              // {
+                              //   name: "Markdown",
+                              //   value: "You can put all the *usual* **__Markdown__** inside of them."
+                              // }
                         ],//fields
 
                         blankField: [{
@@ -257,6 +264,13 @@ bot.on('message', function m (user, userID, channelID, message, evt){
                     });//bot.sendMessage
                     return;
                 }//if
+                if(queue_status[cur_queue] == 'Open'){
+                    bot.sendMessage({
+                        to: channelID,
+                        message: 'Queue is already open!' + '\n'
+                    });//bot.sendMessage
+                    return;
+                }//if
                 queue_status[cur_queue] = 'Open';
           		  bot.sendMessage({
                   to: channelID,
@@ -271,6 +285,13 @@ bot.on('message', function m (user, userID, channelID, message, evt){
                     bot.sendMessage({
                         to: channelID,
                         message: 'Only authorized members can call this function!' + '\n'
+                    });//bot.sendMessage
+                    return;
+                }//if
+                if(queue_status[cur_queue] == 'Closed'){
+                    bot.sendMessage({
+                        to: channelID,
+                        message: 'Queue is already closed!' + '\n'
                     });//bot.sendMessage
                     return;
                 }//if
@@ -343,6 +364,12 @@ bot.on('message', function m (user, userID, channelID, message, evt){
 
         		case 'leave':
         		case 'l':
+                if(queue[cur_queue].length == 0){
+                    bot.sendMessage({
+                        to: channelID,
+                        message: 'You are not in queue!' + '\n'
+                    });//bot.sendMessage
+                }//if
           			for(var i = 1; i < queue[cur_queue].length ; i+=2){
             				if(queue[cur_queue][i] == userID){
             					  bot.sendMessage({
@@ -367,7 +394,7 @@ bot.on('message', function m (user, userID, channelID, message, evt){
         		case '':
                 bot.sendMessage({
                     to: channelID,
-                    message: 'Enter "help"(h) argument for a list of commands' + '\n'
+                    message: 'Enter "help" for a list of commands' + '\n'
                 });//bot.sendMessage
                 break;
             //case ''
@@ -413,7 +440,7 @@ bot.on('message', function m (user, userID, channelID, message, evt){
                 if(queue_cap[cur_queue] < 0) cap = 'Uncapped';
                 else cap = queue_cap[cur_queue]/2;
 
-                var bmessage = '|______/:musical_note:\\\\_______ Singing Queue _______/:musical_note:\\\\______|\n';    //to store output message
+                var bmessage = '|\\_\\_/:musical_note:\\\\\\_\\_ *Singing Queue* \\_\\_/:musical_note:\\\\\\_\\_|\n';    //to store output message
                 if(queue[cur_queue].length == 0){
                     bot.sendMessage({
                         to: channelID,
@@ -429,7 +456,7 @@ bot.on('message', function m (user, userID, channelID, message, evt){
                         }//if
                         else{
                             bmessage = bmessage.concat('Currently Singing: <@' + queue[cur_queue][i+1] + '>'
-                                + '\n\n____ ____ ____ ____ ____ ____ ____ ____ ____ ____ ____ ____ ____ ____'
+                                + '\n\n\\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_'
                                 + '\n#Users: ' + queue[cur_queue].length/2
                                 + '\nCap: ' + cap
                                 + '\nStatus: ' + queue_status[cur_queue] + '\n');
@@ -445,7 +472,7 @@ bot.on('message', function m (user, userID, channelID, message, evt){
                         }//if
                         else{
                             bmessage = bmessage.concat('\nUp Next: <@' + queue[cur_queue][i+1] + '>'
-                                + '\n\n____ ____ ____ ____ ____ ____ ____ ____ ____ ____ ____ ____ ____ ____'
+                                + '\n\n\\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_'
                                 + '\n#Users: ' + queue[cur_queue].length/2
                                 + '\nCap: ' + cap
                                 + '\nStatus: ' + queue_status[cur_queue] + '\n');
@@ -461,7 +488,7 @@ bot.on('message', function m (user, userID, channelID, message, evt){
                         }//if
                         else{
                             bmessage = bmessage.ooncat('\n-' + queue[cur_queue][i]
-                                + '\n\n____ ____ ____ ____ ____ ____ ____ ____ ____ ____ ____ ____ ____ ____'
+                                + '\n\n\\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_'
                                 + '\n#Users: ' + queue[cur_queue].length/2
                                 + '\nCap: ' + cap
                                 + '\nStatus: ' + queue_status[cur_queue] + '\n');
