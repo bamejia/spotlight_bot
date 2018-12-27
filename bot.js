@@ -332,6 +332,10 @@ bot.on('message', function m (user, userID, channelID, message, evt){
                         bot.sendMessage({
                             to: channelID,
                             message: '<@!' + userID + '> has joined the queue!'
+                                + '\nTo check who else is in queue, type "q!queue"'
+                                + '\nIf you need to leave the queue, type "q!leave"'
+                                + '\nGood Luck!'
+                                + '\n\n\\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_'
                                 + '\n#Users: ' + queue[cur_queue].length/2
                                 + '\nCap: Uncapped'
                                 + '\nStatus: ' + queue_status[cur_queue] + '\n'
@@ -341,6 +345,10 @@ bot.on('message', function m (user, userID, channelID, message, evt){
                         bot.sendMessage({
                             to: channelID,
                             message: '<@!' + userID + '> has joined the queue!'
+                                + '\nTo check who else is in queue, type "q!queue"'
+                                + '\nIf you need to leave the queue, type "q!leave"'
+                                + '\nGood Luck!'
+                                + '\n\n\\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_'
                                 + '\n#Users: ' + queue[cur_queue].length/2
                                 + '\nCap: ' + queue_cap[cur_queue]/2
                                 + '\nStatus: ' + queue_status[cur_queue] + '\n'
@@ -487,7 +495,7 @@ bot.on('message', function m (user, userID, channelID, message, evt){
                             bmessage = bmessage.concat('\n-' + queue[cur_queue][i]);
                         }//if
                         else{
-                            bmessage = bmessage.ooncat('\n-' + queue[cur_queue][i]
+                            bmessage = bmessage.concat('\n-' + queue[cur_queue][i]
                                 + '\n\n\\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_'
                                 + '\n#Users: ' + queue[cur_queue].length/2
                                 + '\nCap: ' + cap
