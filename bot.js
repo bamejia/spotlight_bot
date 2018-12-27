@@ -448,7 +448,8 @@ bot.on('message', function m (user, userID, channelID, message, evt){
                 if(queue_cap[cur_queue] < 0) cap = 'Uncapped';
                 else cap = queue_cap[cur_queue]/2;
 
-                var bmessage = '|\\_\\_/:musical_note:\\\\\\_\\_ *Singing Queue* \\_\\_/:musical_note:\\\\\\_\\_|\n';    //to store output message
+                // var bmessage = '|\\_\\_/:musical_note:\\\\\\_\\_ *Singing Queue* \\_\\_/:musical_note:\\\\\\_\\_|\n';    //to store output message
+                var bmessage = '_ _  _ _  _ _  _ _ :musical_note:    Singing Queue    :musical_note:  _ _  _ _  _ _  _ _  \n‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾\n'
                 if(queue[cur_queue].length == 0){
                     bot.sendMessage({
                         to: channelID,
