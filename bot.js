@@ -332,10 +332,10 @@ bot.on('message', function m (user, userID, channelID, message, evt){
                         bot.sendMessage({
                             to: channelID,
                             message: '<@!' + userID + '> has joined the queue!'
-                                + '\nTo check who else is in queue, type "q!queue"'
+                                + '\nTo check who is in queue, type "q!queue"'
                                 + '\nIf you need to leave the queue, type "q!leave"'
                                 + '\nGood Luck!'
-                                + '\n\n\\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_'
+                                + '\n\n‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾'
                                 + '\n#Users: ' + queue[cur_queue].length/2
                                 + '\nCap: Uncapped'
                                 + '\nStatus: ' + queue_status[cur_queue] + '\n'
@@ -345,10 +345,10 @@ bot.on('message', function m (user, userID, channelID, message, evt){
                         bot.sendMessage({
                             to: channelID,
                             message: '<@!' + userID + '> has joined the queue!'
-                                + '\nTo check who else is in queue, type "q!queue"'
+                                + '\nTo check who is in queue, type "q!queue"'
                                 + '\nIf you need to leave the queue, type "q!leave"'
                                 + '\nGood Luck!'
-                                + '\n\n\\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_'
+                                + '\n\n‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾'
                                 + '\n#Users: ' + queue[cur_queue].length/2
                                 + '\nCap: ' + queue_cap[cur_queue]/2
                                 + '\nStatus: ' + queue_status[cur_queue] + '\n'
@@ -465,7 +465,8 @@ bot.on('message', function m (user, userID, channelID, message, evt){
                         }//if
                         else{
                             bmessage = bmessage.concat('Currently Singing: <@' + queue[cur_queue][i+1] + '>'
-                                + '\n\n\\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_'
+                                // + '\n\n\\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_'
+                                + '\n\n‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾'
                                 + '\n#Users: ' + queue[cur_queue].length/2
                                 + '\nCap: ' + cap
                                 + '\nStatus: ' + queue_status[cur_queue] + '\n');
@@ -481,7 +482,7 @@ bot.on('message', function m (user, userID, channelID, message, evt){
                         }//if
                         else{
                             bmessage = bmessage.concat('\nUp Next: <@' + queue[cur_queue][i+1] + '>'
-                                + '\n\n\\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_'
+                                + '\n\n‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾'
                                 + '\n#Users: ' + queue[cur_queue].length/2
                                 + '\nCap: ' + cap
                                 + '\nStatus: ' + queue_status[cur_queue] + '\n');
@@ -497,7 +498,7 @@ bot.on('message', function m (user, userID, channelID, message, evt){
                         }//if
                         else{
                             bmessage = bmessage.concat('\n-' + queue[cur_queue][i]
-                                + '\n\n\\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_ \\_\\_'
+                                + '\n\n‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾'
                                 + '\n#Users: ' + queue[cur_queue].length/2
                                 + '\nCap: ' + cap
                                 + '\nStatus: ' + queue_status[cur_queue] + '\n');
